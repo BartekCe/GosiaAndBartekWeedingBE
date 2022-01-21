@@ -11,6 +11,7 @@ public class DayOfEatingController {
     private final DayOfEatingService dayOfEatingService;
 
     public DayOfEatingController(DayOfEatingService dayOfEatingService) {
+        System.out.println("a takie tam");
         this.dayOfEatingService = dayOfEatingService;
     }
 
