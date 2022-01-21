@@ -18,10 +18,10 @@ public class MealEntity {
     private Long id;
     @OneToMany
     List<IngredientSimple> ingredients;
-    private double calories;
+    private int calories;
 
 
-    public MealEntity(List<IngredientSimple> ingredients, Long id, double calories) {
+    public MealEntity(List<IngredientSimple> ingredients, Long id, int calories) {
         this.id = id;
         this.calories = calories;
         this.ingredients = ingredients;
