@@ -35,10 +35,10 @@ public class IngredientEntity {
 
     public IngredientEntity(String name, BigDecimal protein, BigDecimal fat, BigDecimal carbohydrate, BigDecimal calories, int grams) {
         this.name = name;
-        this.protein = protein.divide(BigDecimal.valueOf(grams), RoundingMode.DOWN);
-        this.fat = fat.divide(BigDecimal.valueOf(grams), RoundingMode.DOWN);
-        this.carbohydrate = carbohydrate.divide(BigDecimal.valueOf(grams), RoundingMode.DOWN);
-        this.calories = calories.divide(BigDecimal.valueOf(grams), RoundingMode.DOWN);
+        this.protein = protein.divide(BigDecimal.valueOf(grams),2, RoundingMode.DOWN);
+        this.fat = fat.divide(BigDecimal.valueOf(grams),2, RoundingMode.DOWN);
+        this.carbohydrate = carbohydrate.divide(BigDecimal.valueOf(grams),2, RoundingMode.DOWN);
+        this.calories = calories.divide(BigDecimal.valueOf(grams),2, RoundingMode.DOWN);
         this.grams = 1;
     }
 
