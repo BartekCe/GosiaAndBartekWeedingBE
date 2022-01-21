@@ -4,6 +4,7 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.stream.Stream;
 
@@ -13,13 +14,13 @@ public class IngredientDto {
     @NotNull
     private final String name;
     @NotNull
-    private final double protein;
+    private final BigDecimal protein;
     @NotNull
-    private final double fat;
+    private final BigDecimal fat;
     @NotNull
-    private final double carbohydrate;
+    private final BigDecimal carbohydrate;
     @NotNull
-    private final double calories;
+    private final BigDecimal calories;
     @NotNull
     private final int grams;
 

@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,11 +17,13 @@ public class DayOfEatingEntity {
     @OneToMany
     List<MealEntity> meals;
     private LocalDate date;
+    private int calories;
 
     public DayOfEatingEntity(Long id, List<MealEntity> meals) {
         this.id = id;
         this.meals = meals;
         this.date = LocalDate.now();
+        this.calories = meals.stream().mapToInt(MealEntity::getCalories).sum();
     }
 
 }

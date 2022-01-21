@@ -12,7 +12,7 @@ public class MealCreationDto {
     private final Long dayId;
     private final Integer mealNumber;
     private final List<IngredientSimple> ingredients;
-    private final double calories;
+    private final int calories;
 
     @Override
     public String toString() {

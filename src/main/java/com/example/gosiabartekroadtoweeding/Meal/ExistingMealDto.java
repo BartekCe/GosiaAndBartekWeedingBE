@@ -11,7 +11,7 @@ import java.util.List;
 public class ExistingMealDto {
     private final Long mealId;
     private final List<IngredientSimple> ingredients;
-    private final double calories;
+    private final int calories;
 
     @Override
     public String toString() {

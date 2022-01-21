@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 @Getter
 @Setter
@@ -21,26 +23,26 @@ public class IngredientEntity {
     @NotNull
     private String name;
     @NotNull
-    private double protein;
+    private BigDecimal protein;
     @NotNull
-    private double fat;
+    private BigDecimal fat;
     @NotNull
-    private double carbohydrate;
+    private BigDecimal carbohydrate;
     @NotNull
-    private double calories;
+    private BigDecimal calories;
     @NotNull
     private int grams;
 
-    public IngredientEntity(String name, double protein, double fat, double carbohydrate, double calories, int grams) {
+    public IngredientEntity(String name, BigDecimal protein, BigDecimal fat, BigDecimal carbohydrate, BigDecimal calories, int grams) {
         this.name = name;
-        this.protein = protein / grams;
-        this.fat = fat / grams;
-        this.carbohydrate = carbohydrate / grams;
-        this.calories = calories / grams;
+        this.protein = protein.divide(BigDecimal.valueOf(grams),2, RoundingMode.DOWN);
+        this.fat = fat.divide(BigDecimal.valueOf(grams),2, RoundingMode.DOWN);
+        this.carbohydrate = carbohydrate.divide(BigDecimal.valueOf(grams),2, RoundingMode.DOWN);
+        this.calories = calories.divide(BigDecimal.valueOf(grams),2, RoundingMode.DOWN);
         this.grams = 1;
     }
 
-    public IngredientEntity(Long id, String name, double protein, double fat, double carbohydrate, double calories, int grams) {
+    public IngredientEntity(Long id, String name, BigDecimal protein, BigDecimal fat, BigDecimal carbohydrate, BigDecimal calories, int grams) {
         this.id = id;
         this.name = name;
         this.protein = protein;
