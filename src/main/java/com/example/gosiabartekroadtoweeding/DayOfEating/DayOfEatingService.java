@@ -16,31 +16,26 @@ public class DayOfEatingService {
         this.mealService = mealService;
     }
 
-    public DayOfEatingEntity createNewDayOfEating(Long userId) {
-        var newDayId = createId(userId);
-        if (!dayOfEatingRepository.existsById(newDayId)) {
-            return dayOfEatingRepository.save(new DayOfEatingEntity(newDayId, mealService.createEmptyMeals()));
+    public DayOfEatingEntity createNewDayOfEating(Long dayId) {
+        System.out.println("" + dayId);
+        if (!dayOfEatingRepository.existsById(dayId)) {
+            System.out.println("am i here? ---->" + dayId);
+            return dayOfEatingRepository.save(new DayOfEatingEntity(dayId, mealService.createEmptyMeals()));
         } else
-            throw new IllegalArgumentException("User with that " + userId + " already created day at " + LocalDate.now());
+            throw new IllegalArgumentException("User with that " + dayId + " already created day at " + LocalDate.now());
     }
 
     private Long createId(Long userId) {
         return Long.parseLong(userId.toString() + LocalDate.now().toString().replaceAll("-", ""));
     }
 
-    public DayOfEatingEntity getDay(Long id) {
-        if (dayOfEatingRepository.existsById(id)) {
-            return dayOfEatingRepository.findById(id).get();
+    public DayOfEatingEntity getDay(Long dayId) {
+        System.out.println(dayId);
+        if (dayOfEatingRepository.existsById(dayId)) {
+            return dayOfEatingRepository.findById(dayId).get();
         } else {
-            var dayId = Long.toString(id);
-            var userId = dayId.substring(0, dayId.length() - 8);
-            return createNewDayOfEating(Long.parseLong(userId));
+            return createNewDayOfEating(dayId);
         }
     }
 
-    public void createNewMeal(MealCreationDto mealCreationDto) {
-        var dayOfEating = getDay(mealCreationDto.getDayId());
-        dayOfEating.getMeals().add(mealService.save(mealCreationDto));
-        dayOfEatingRepository.save(dayOfEating);
-    }
 }
