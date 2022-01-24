@@ -22,8 +22,12 @@ public class DayOfEatingEntity {
     public DayOfEatingEntity(Long id, List<MealEntity> meals) {
         this.id = id;
         this.meals = meals;
-        this.date = LocalDate.now();
+        this.date = getDateFormId(id);
         this.calories = meals.stream().mapToInt(MealEntity::getCalories).sum();
     }
 
+    private LocalDate getDateFormId(Long id){
+        var x = id.toString().substring(2);
+        return  LocalDate.of(Integer.parseInt(x.substring(0,4)), Integer.parseInt(x.substring(4,6)), Integer.parseInt(x.substring(6)));
+    }
 }

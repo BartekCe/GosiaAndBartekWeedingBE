@@ -40,6 +40,7 @@ public class UserController {
 
     @GetMapping(path = "/getUsers")
     public List<UserEntity> getUsers(){
+        System.out.println("elo");
         return userEntityService.getUsers();
     }
 

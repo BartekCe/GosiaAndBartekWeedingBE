@@ -15,6 +15,7 @@ public class UserEntityService {
     public UserEntityService(UserEntityRepository userEntityRepository, DayOfEatingService dayOfEatingService) {
         this.userEntityRepository = userEntityRepository;
         this.dayOfEatingService = dayOfEatingService;
+        createDefault();
     }
 
     public void save(UserDto userDto) {
@@ -72,5 +73,37 @@ public class UserEntityService {
 
     public List<UserEntity> getUsers() {
         return userEntityRepository.findAll();
+    }
+
+    private void createDefault() {
+        if(userEntityRepository.getByName("Bartek").isEmpty()){
+            userEntityRepository.save(
+                    new UserEntity(
+                            "Bartek",
+                            89.9,
+                            82.0,
+                            16100,
+                            2300,
+                            100,
+                            30,
+                            60
+                    )
+            );
+        }
+        if(userEntityRepository.getByName("Gosia").isEmpty()){
+            userEntityRepository.save(
+                    new UserEntity(
+                            "Gosia",
+                            71.0,
+                            65.0,
+                            12600,
+                            1800,
+                            70,
+                            30,
+                            60
+                    )
+            );
+        }
+
     }
 }

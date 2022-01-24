@@ -14,10 +14,10 @@ public class DayOfEatingController {
         this.dayOfEatingService = dayOfEatingService;
     }
 
-    @PostMapping(path = "/addNewMeal")
-    public void createNewMeal(@RequestBody MealCreationDto mealCreationDto) {
-        dayOfEatingService.createNewMeal(mealCreationDto);
-    }
+//    @PostMapping(path = "/addNewMeal")
+//    public void createNewMeal(@RequestBody MealCreationDto mealCreationDto) {
+//        dayOfEatingService.createNewMeal(mealCreationDto);
+//    }
 
     @GetMapping(path = "/getDayOfEating/{id}")
     public DayOfEatingEntity getDay(@PathVariable Long id) {

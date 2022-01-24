@@ -10,4 +10,6 @@ public interface IngredientRepository extends JpaRepository<IngredientEntity, Lo
     Optional<IngredientEntity> getByName(String name);
 
     boolean existsByName(String name);
+
+    Optional<IngredientEntity> findByName(String name);
 }

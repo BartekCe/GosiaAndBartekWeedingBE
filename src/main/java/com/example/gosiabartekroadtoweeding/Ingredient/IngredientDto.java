@@ -20,15 +20,16 @@ public class IngredientDto {
     @NotNull
     private final BigDecimal carbohydrate;
     @NotNull
-    private final BigDecimal calories;
-    @NotNull
     private final int grams;
+
 
     public boolean withoutNulls(){
         System.out.println(this);
-       return Stream.of(this.name,this.protein,this.fat,this.carbohydrate,this.calories,this.grams)
+       return Stream.of(this.name,this.protein,this.fat,this.carbohydrate,this.grams)
                 .allMatch(Objects::nonNull);
     }
+
+
 
     @Override
     public String toString() {
@@ -37,7 +38,6 @@ public class IngredientDto {
                 ", protein=" + protein +
                 ", fat=" + fat +
                 ", carbohydrate=" + carbohydrate +
-                ", calories=" + calories +
                 ", grams=" + grams +
                 '}';
     }
