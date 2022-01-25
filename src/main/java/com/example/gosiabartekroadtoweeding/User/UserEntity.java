@@ -1,6 +1,6 @@
 package com.example.gosiabartekroadtoweeding.User;
 
-import com.example.gosiabartekroadtoweeding.DayOfEating.DayOfEatingEntity;
+import com.example.gosiabartekroadtoweeding.Week.WeekEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +29,7 @@ public class UserEntity {
     private int dailyFat;
     private int dailyCarbohydrate;
     @OneToMany
-    List<DayOfEatingEntity> daysOfEating;
+    private List<WeekEntity> weeks;
 
     public UserEntity(String name, double currentWeight, double goalWeight
             ,int weeklyCaloriesIntake, int dailyCaloriesIntake, int dailyProtein, int dailyFat, int dailyCarbohydrate) {
@@ -42,6 +42,6 @@ public class UserEntity {
         this.dailyProtein = dailyProtein;
         this.dailyFat = dailyFat;
         this.dailyCarbohydrate = dailyCarbohydrate;
-        this.daysOfEating = new ArrayList<>();
+        this.weeks = new ArrayList<>();
     }
 }

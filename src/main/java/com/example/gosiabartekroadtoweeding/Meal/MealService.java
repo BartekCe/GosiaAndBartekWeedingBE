@@ -20,10 +20,6 @@ public class MealService {
         this.ingredientService = ingredientService;
     }
 
-//    public MealEntity save(MealCreationDto mealCreationDto) {
-//        return mealRepository.save(new MealEntity(ingredientSimpleService.saveAll(mealCreationDto.getIngredients()), mealCreationDto.getDayId(), mealCreationDto.getCalories()));
-//    }
-
     private void update(ExistingMealDto mealDto) {
         var ingredients = ingredientService.convertSimpleIngredients(mealDto.getIngredients());
         mealRepository.save(new MealEntity(mealDto.getMealId(),

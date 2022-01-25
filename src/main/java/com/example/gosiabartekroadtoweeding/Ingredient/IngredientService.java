@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 @Service
@@ -16,9 +17,9 @@ public class IngredientService {
         this.ingredientRepository = ingredientRepository;
         var defaultIngredients = new DefaultIngredients();
         ingredientRepository.saveAll(List.of(
-                new IngredientEntity("Ingredient 1"),
-                new IngredientEntity("Ingredient 2"),
-                new IngredientEntity("Ingredient 3")
+                new IngredientEntity("1 ingredient"),
+                new IngredientEntity("2 ingredient"),
+                new IngredientEntity("3 ingredient")
         ));
         if (this.getAll().size() == 3) {
             ingredientRepository.saveAll(defaultIngredients.getDefaultIngredients());
@@ -27,17 +28,13 @@ public class IngredientService {
 
     public IngredientEntity save(IngredientDto ingredientDto) {
         if (!ingredientDto.withoutNulls()) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You Can not save i/ngredient with nulls");
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "You can not save ingredient with nulls");
         }
         if (ingredientRepository.getByName(ingredientDto.getName()).isEmpty()) {
             return ingredientRepository.save(new IngredientEntity(ingredientDto.getName(), ingredientDto.getProtein(),
                     ingredientDto.getFat(), ingredientDto.getCarbohydrate(), ingredientDto.getGrams()));
         } else
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Ingredient '" + ingredientDto.getName() + "' all ready exist.");
-    }
-
-    public List<IngredientEntity> saveAll(List<IngredientDto> ingredientDtos) {
-        return ingredientRepository.saveAll(convertIngredients(ingredientDtos));
     }
 
     public List<IngredientEntity> getAll() {
@@ -49,16 +46,6 @@ public class IngredientService {
         if (ingredient.isPresent()) {
             return ingredient.get();
         } else throw new IllegalArgumentException("Ingredient " + name + " does not exist");
-    }
-
-    private List<IngredientEntity> convertIngredients(List<IngredientDto> ingredientDtos) {
-        List<IngredientEntity> ingredientEntities = new ArrayList<>();
-        for (IngredientDto ingredientDto : ingredientDtos) {
-            ingredientEntities.add(new IngredientEntity(ingredientDto.getName(), ingredientDto.getProtein(),
-                    ingredientDto.getFat(), ingredientDto.getCarbohydrate(), ingredientDto.getGrams())
-            );
-        }
-        return ingredientEntities;
     }
 
     public List<IngredientEntity> convertSimpleIngredients(List<IngredientSimpleDto> simpleIngredients) {
@@ -79,38 +66,25 @@ public class IngredientService {
         return ingredientRepository.findByName(name);
     }
 
-    public boolean isIngredientInDB(String name) {
-        return getIngredient(name).isPresent();
-    }
-
-    public IngredientEntity getIngredientWithGrams(String name, Integer grams) {
-        var ingredient = getIngredient(name);
-        var gr = BigDecimal.valueOf(grams);
-        if (ingredient.isPresent()) {
-            return new IngredientEntity(
-                    ingredient.get().getId(),
-                    name,
-                    ingredient.get().getProtein().multiply(gr),
-                    ingredient.get().getFat().multiply(gr),
-                    ingredient.get().getCarbohydrate().multiply(gr),
-                    grams);
-        } else throw new IllegalArgumentException("Ingredient " + name + " does not exist");
-    }
-
-    public List<IngredientEntity> getIngredientsData(Map<String, Integer> ingredientMap) {
-        var ingredients = new ArrayList<IngredientEntity>();
-        for (Map.Entry<String, Integer> ingredient : ingredientMap.entrySet()) {
-            ingredients.add(getIngredientWithGrams(ingredient.getKey(), ingredient.getValue()));
-        }
-        return ingredients;
-    }
-
     public List<String> getIngredientsNames() {
         var ingredientsNames = new ArrayList<String>();
         var ingredients = getAll();
-        ingredients.stream().filter(ingredientEntity -> !ingredientEntity.getName().contains("Ingredient"))
+        ingredients.stream().filter(ingredientEntity -> !ingredientEntity.getName().contains("ingredient"))
                 .forEach(ingredientEntity -> ingredientsNames.add(ingredientEntity.getName()));
         Collections.sort(ingredientsNames);
         return ingredientsNames;
+    }
+
+    public void updateIngredient(IngredientDto ingredientDto){
+        var grams = BigDecimal.valueOf(ingredientDto.getGrams());
+        var ingredient = ingredientRepository.getByName(ingredientDto.getName());
+        ingredient.ifPresent(ingredientEntity -> ingredientRepository.save(new IngredientEntity(
+                ingredientEntity.getId(),
+                ingredientDto.getName(),
+                ingredientDto.getProtein().divide(grams, 4, RoundingMode.CEILING),
+                ingredientDto.getFat().divide(grams, 4, RoundingMode.CEILING),
+                ingredientDto.getCarbohydrate().divide(grams, 4, RoundingMode.CEILING),
+                1
+        )));
     }
 }

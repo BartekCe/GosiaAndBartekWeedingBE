@@ -2,7 +2,6 @@ package com.example.gosiabartekroadtoweeding.Controller;
 
 import com.example.gosiabartekroadtoweeding.DayOfEating.DayOfEatingEntity;
 import com.example.gosiabartekroadtoweeding.DayOfEating.DayOfEatingService;
-import com.example.gosiabartekroadtoweeding.Meal.MealCreationDto;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin()
@@ -13,11 +12,6 @@ public class DayOfEatingController {
     public DayOfEatingController(DayOfEatingService dayOfEatingService) {
         this.dayOfEatingService = dayOfEatingService;
     }
-
-//    @PostMapping(path = "/addNewMeal")
-//    public void createNewMeal(@RequestBody MealCreationDto mealCreationDto) {
-//        dayOfEatingService.createNewMeal(mealCreationDto);
-//    }
 
     @GetMapping(path = "/getDayOfEating/{id}")
     public DayOfEatingEntity getDay(@PathVariable Long id) {
