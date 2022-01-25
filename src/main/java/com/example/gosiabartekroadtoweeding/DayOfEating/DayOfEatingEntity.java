@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,17 +18,17 @@ public class DayOfEatingEntity {
     @OneToMany
     List<MealEntity> meals;
     private LocalDate date;
-    private int calories;
+    private DayOfWeek dayTag;
 
-    public DayOfEatingEntity(Long id, List<MealEntity> meals) {
-        this.id = id;
+    public DayOfEatingEntity(Long dayId, List<MealEntity> meals) {
+        this.id = dayId;
         this.meals = meals;
-        this.date = getDateFormId(id);
-        this.calories = meals.stream().mapToInt(MealEntity::getCalories).sum();
+        this.date = getDateFormId(dayId);
+        this.dayTag = this.date.getDayOfWeek();
     }
 
-    private LocalDate getDateFormId(Long id){
-        var x = id.toString().substring(2);
+    private LocalDate getDateFormId(Long dayId){
+        var x = dayId.toString().substring(dayId.toString().length() -8);
         return  LocalDate.of(Integer.parseInt(x.substring(0,4)), Integer.parseInt(x.substring(4,6)), Integer.parseInt(x.substring(6)));
     }
 }

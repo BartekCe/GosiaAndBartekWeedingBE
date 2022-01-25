@@ -21,23 +21,18 @@ public class IngredientController {
         return ingredientService.save(ingredientDto);
     }
 
-    @PostMapping(path = "/addIngredients")
-    public List<IngredientEntity> addIngredients(@RequestBody List<IngredientDto> ingredients) {
-        return ingredientService.saveAll(ingredients);
-    }
-
     @GetMapping(path = "/getIngredient")
     public IngredientEntity getIngredient(@RequestBody String name) {
         return ingredientService.getIngredientData(name);
     }
 
-    @GetMapping(path = "/isIngredientInDB/{name}")
-    public boolean isIngredientInDB(@PathVariable String name) {
-        return ingredientService.isIngredientInDB(name);
-    }
-
     @GetMapping(path = "/getIngredientsList")
     public List<String> getIngredientsNames() {
         return ingredientService.getIngredientsNames();
+    }
+
+    @PutMapping(path = "/updateIngredient")
+    public void updateIngredient(@RequestBody IngredientDto ingredientDto){
+        ingredientService.updateIngredient(ingredientDto);
     }
 }

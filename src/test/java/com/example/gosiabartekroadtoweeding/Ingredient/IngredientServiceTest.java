@@ -32,11 +32,18 @@ class IngredientServiceTest {
     @Test
     void qweqeqweqew() {
 
-        Long id = 2420100410L;
+        Long id = 2420220130L;
         var x = id.toString().substring(2);
-        System.out.println(x.substring(0,4));
-        System.out.println(x.substring(4,6));
-        System.out.println(x.substring(6));
+        var date = getDateFormId(id);
 
+        System.out.println(date.getDayOfWeek().getValue());
+        System.out.println();
+        System.out.println(date.getDayOfWeek());
+
+    }
+
+    private LocalDate getDateFormId(Long id){
+        var x = id.toString().substring(2);
+        return  LocalDate.of(Integer.parseInt(x.substring(0,4)), Integer.parseInt(x.substring(4,6)), Integer.parseInt(x.substring(6)));
     }
 }
