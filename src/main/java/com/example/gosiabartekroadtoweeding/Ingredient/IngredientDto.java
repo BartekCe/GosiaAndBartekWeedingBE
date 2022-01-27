@@ -3,28 +3,24 @@ package com.example.gosiabartekroadtoweeding.Ingredient;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.stream.Stream;
 
 @Getter
-@Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class IngredientDto {
     @NotNull
-    private String name;
+    private final String name;
     @NotNull
-    private BigDecimal protein;
+    private final BigDecimal protein;
     @NotNull
-    private  BigDecimal fat;
+    private final BigDecimal fat;
     @NotNull
-    private  BigDecimal carbohydrate;
+    private final BigDecimal carbohydrate;
     @NotNull
-    private int grams;
+    private final int grams;
 
 
     public boolean withoutNulls(){

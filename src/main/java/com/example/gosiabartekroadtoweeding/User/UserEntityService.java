@@ -2,8 +2,8 @@ package com.example.gosiabartekroadtoweeding.User;
 
 import com.example.gosiabartekroadtoweeding.DayOfEating.DayOfEatingEntity;
 import com.example.gosiabartekroadtoweeding.DayOfEating.DayOfEatingService;
-import com.example.gosiabartekroadtoweeding.Meal.Week.WeekEntity;
-import com.example.gosiabartekroadtoweeding.Meal.Week.WeekEntityService;
+import com.example.gosiabartekroadtoweeding.Week.WeekEntity;
+import com.example.gosiabartekroadtoweeding.Week.WeekEntityService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

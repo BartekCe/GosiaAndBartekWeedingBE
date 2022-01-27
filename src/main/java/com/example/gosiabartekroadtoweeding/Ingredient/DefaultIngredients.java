@@ -6,7 +6,7 @@ import java.util.List;
 
 @Getter
 public class DefaultIngredients {
-    private final List<IngredientEntity> defaultIngredients;
+    private List<IngredientEntity> defaultIngredients;
 
     public DefaultIngredients() {
         this.defaultIngredients = createDefault();
