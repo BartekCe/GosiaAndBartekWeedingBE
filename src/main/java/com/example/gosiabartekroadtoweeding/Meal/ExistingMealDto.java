@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class MealDto {
+public class ExistingMealDto {
     private final Long mealId;
     private final List<IngredientSimpleDto> ingredients;
     private final int calories;
