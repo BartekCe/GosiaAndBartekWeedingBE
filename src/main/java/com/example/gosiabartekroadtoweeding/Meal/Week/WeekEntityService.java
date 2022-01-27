@@ -1,4 +1,4 @@
-package com.example.gosiabartekroadtoweeding.Week;
+package com.example.gosiabartekroadtoweeding.Meal.Week;
 
 import com.example.gosiabartekroadtoweeding.DayOfEating.DayOfEatingService;
 import org.springframework.stereotype.Service;

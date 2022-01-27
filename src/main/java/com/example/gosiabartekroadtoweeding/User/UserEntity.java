@@ -1,6 +1,6 @@
 package com.example.gosiabartekroadtoweeding.User;
 
-import com.example.gosiabartekroadtoweeding.Week.WeekEntity;
+import com.example.gosiabartekroadtoweeding.Meal.Week.WeekEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
