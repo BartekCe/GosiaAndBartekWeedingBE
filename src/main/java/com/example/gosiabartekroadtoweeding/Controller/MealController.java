@@ -1,6 +1,6 @@
 package com.example.gosiabartekroadtoweeding.Controller;
 
-import com.example.gosiabartekroadtoweeding.Meal.ExistingMealDto;
+import com.example.gosiabartekroadtoweeding.Meal.MealDto;
 import com.example.gosiabartekroadtoweeding.Meal.MealEntity;
 import com.example.gosiabartekroadtoweeding.Meal.MealService;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +20,8 @@ public class MealController {
     }
 
     @PutMapping(path = "/updateMeal")
-    public void updateMeal(@RequestBody ExistingMealDto existingMealDto){
-        mealService.updateMeal(existingMealDto);
+    public void updateMeal(@RequestBody MealDto mealDto){
+        mealService.updateMeal(mealDto);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.example.gosiabartekroadtoweeding.Controller;
 
-import com.example.gosiabartekroadtoweeding.Week.WeekEntityService;
+import com.example.gosiabartekroadtoweeding.Meal.Week.WeekEntityService;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
