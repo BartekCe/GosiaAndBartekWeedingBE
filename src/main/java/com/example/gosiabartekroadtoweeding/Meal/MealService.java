@@ -20,7 +20,7 @@ public class MealService {
         this.ingredientService = ingredientService;
     }
 
-    private void update(ExistingMealDto mealDto) {
+    private void update(MealDto mealDto) {
         var ingredients = ingredientService.convertSimpleIngredients(mealDto.getIngredients());
         mealRepository.save(new MealEntity(mealDto.getMealId(),
                 ingredientSimpleService.saveAll(mealDto.getIngredients()),
@@ -44,9 +44,9 @@ public class MealService {
         return mealRepository.findById(id).get();
     }
 
-    public void updateMeal(ExistingMealDto existingMealDto) {
-        if (mealRepository.existsById(existingMealDto.getMealId())) {
-            update(existingMealDto);
-        } else throw new IllegalArgumentException(" " + existingMealDto.getMealId() + " does not exist");
+    public void updateMeal(MealDto mealDto) {
+        if (mealRepository.existsById(mealDto.getMealId())) {
+            update(mealDto);
+        } else throw new IllegalArgumentException(" " + mealDto.getMealId() + " does not exist");
     }
 }
