@@ -2,6 +2,8 @@ package com.example.gosiabartekroadtoweeding.User;
 
 import com.example.gosiabartekroadtoweeding.DayOfEating.DayOfEatingEntity;
 import com.example.gosiabartekroadtoweeding.DayOfEating.DayOfEatingService;
+import com.example.gosiabartekroadtoweeding.Meal.CopyMealDto;
+import com.example.gosiabartekroadtoweeding.Meal.MealEntity;
 import com.example.gosiabartekroadtoweeding.Week.WeekEntity;
 import com.example.gosiabartekroadtoweeding.Week.WeekEntityService;
 import org.springframework.http.HttpStatus;
@@ -140,5 +142,14 @@ public class UserEntityService {
             return true;
         } else return false;
 
+    }
+
+    public MealEntity copyMeal(CopyMealDto copyMealDto) {
+        var user = userEntityRepository.findAll().stream()
+                .filter(userEntity -> !userEntity.getId().equals(copyMealDto.getUserId())).findAny();
+        var dayId = Long.parseLong(user.get().getId() + copyMealDto.getDate().toString().replace("-", ""));
+        var day = dayOfEatingService.getDay(dayId);
+        var meal = day.getMeals().stream().filter(mealEntity -> mealEntity.getMealTag().equals(copyMealDto.getMealTag())).findAny();
+        return meal.get();
     }
 }

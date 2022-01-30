@@ -1,6 +1,8 @@
 package com.example.gosiabartekroadtoweeding.Controller;
 
 import com.example.gosiabartekroadtoweeding.DayOfEating.DayOfEatingEntity;
+import com.example.gosiabartekroadtoweeding.Meal.CopyMealDto;
+import com.example.gosiabartekroadtoweeding.Meal.MealEntity;
 import com.example.gosiabartekroadtoweeding.User.UserSimpleData;
 import com.example.gosiabartekroadtoweeding.User.UserDto;
 import com.example.gosiabartekroadtoweeding.User.UserEntityService;
@@ -40,5 +42,10 @@ public class UserController {
     @PostMapping(path = "/createNewWeek/{userId}")
     public boolean createNewWeek(@PathVariable Long userId){
         return userEntityService.createNewWeek(userId);
+    }
+
+    @PostMapping(path = "/copyMeal")
+    public MealEntity copyMeal(@RequestBody CopyMealDto copyMealDto){
+        return userEntityService.copyMeal(copyMealDto);
     }
 }

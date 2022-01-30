@@ -4,6 +4,7 @@ import com.example.gosiabartekroadtoweeding.Meal.MealDto;
 import com.example.gosiabartekroadtoweeding.Meal.MealEntity;
 import com.example.gosiabartekroadtoweeding.Meal.MealService;
 import org.springframework.web.bind.annotation.*;
+
 @CrossOrigin()
 @RestController
 public class MealController {
