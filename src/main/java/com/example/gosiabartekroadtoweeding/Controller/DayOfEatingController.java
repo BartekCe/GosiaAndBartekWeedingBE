@@ -17,4 +17,9 @@ public class DayOfEatingController {
     public DayOfEatingEntity getDay(@PathVariable Long id) {
         return dayOfEatingService.getDay(id);
     }
+
+    @GetMapping(path = "/isDayExist/{id}")
+    public boolean isDayExist(@PathVariable Long id){
+        return dayOfEatingService.existById(id);
+    }
 }
