@@ -36,4 +36,9 @@ public class UserController {
     public void updateUser(@RequestBody UserDto userDto){
         userEntityService.updateUser(userDto);
     }
+
+    @PostMapping(path = "/createNewWeek/{userId}")
+    public boolean createNewWeek(@PathVariable Long userId){
+        return userEntityService.createNewWeek(userId);
+    }
 }

@@ -18,4 +18,11 @@ class DayOfEatingServiceTest {
        var days = dayOfEatingService.saveAllWeek(dayId);
         System.out.println(days.size());
     }
+
+    @Test
+    void dasdasdasd() {
+        var dayId= 120220130L;
+        var x =dayOfEatingService.getPreviousDayIdFromDayId(dayId);
+        System.out.println(x);
+    }
 }
