@@ -139,6 +139,12 @@ public class DefaultIngredients {
                         65.0,
                         14.0
                 )
+                ,new IngredientEntity(
+                        "cooked white beans",
+                        10.22,
+                        0.76,
+                        21.92
+                )
         );
     }
 }
