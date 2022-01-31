@@ -133,6 +133,11 @@ public class DefaultIngredients {
                         26.2,
                         51.9,
                         9.6
+                ),new IngredientEntity(
+                        "walnuts",
+                        15.0,
+                        65.0,
+                        14.0
                 )
         );
     }

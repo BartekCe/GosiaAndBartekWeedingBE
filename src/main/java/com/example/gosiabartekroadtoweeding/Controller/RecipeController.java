@@ -17,8 +17,8 @@ public class RecipeController {
     }
 
     @PostMapping(path = "/addRecipe")
-    public RecipeEntity saveRecipe(@RequestBody RecipeDto recipeDto) {
-        return recipeService.save(recipeDto);
+    public void saveRecipe(@RequestBody RecipeDto recipeDto) {
+         recipeService.save(recipeDto);
     }
 
     @GetMapping(path = "/getRecipe/{name}")
@@ -26,13 +26,8 @@ public class RecipeController {
         return recipeService.getRecipe(name);
     }
 
-    @GetMapping(path = "/getAllRecipes")
-    public List<RecipeEntity> getAll() {
+    @GetMapping(path = "/getRecipes")
+    public List<RecipeEntity> getRecipes() {
         return recipeService.getAll();
-    }
-
-    @GetMapping(path = "/getRecipesList")
-    public List<String> getRecipesNames() {
-        return recipeService.getRecipesNames();
     }
 }
