@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Getter
@@ -20,9 +20,33 @@ public class RecipeEntity {
     private String name;
     @OneToMany
     private List<IngredientSimple> ingredients;
+    private int calories;
+    @Column(columnDefinition="Decimal(10,4)")
+    private BigDecimal protein;
+    @Column(columnDefinition="Decimal(10,4)")
+    private BigDecimal fat;
+    @Column(columnDefinition="Decimal(10,4)")
+    private BigDecimal carbohydrate;
 
-    public RecipeEntity(String name, List<IngredientSimple> ingredients) {
+    public RecipeEntity(String name, List<IngredientSimple> ingredients, int calories, BigDecimal protein, BigDecimal fat, BigDecimal carbohydrate) {
         this.name = name;
         this.ingredients = ingredients;
+        this.calories = calories;
+        this.protein = protein;
+        this.fat = fat;
+        this.carbohydrate = carbohydrate;
+    }
+
+    @Override
+    public String toString() {
+        return "RecipeEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", ingredients=" + ingredients +
+                ", calories=" + calories +
+                ", protein=" + protein +
+                ", fat=" + fat +
+                ", carbohydrate=" + carbohydrate +
+                '}';
     }
 }

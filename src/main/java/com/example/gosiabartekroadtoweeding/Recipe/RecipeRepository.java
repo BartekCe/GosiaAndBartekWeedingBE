@@ -7,5 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface RecipeRepository extends JpaRepository<RecipeEntity, Long> {
-    Optional<RecipeEntity> getByName(String name);
+        Optional<RecipeEntity> findByName(String name);
+        Optional<RecipeEntity> getByName(String name);
 }
