@@ -35,9 +35,6 @@ public class RecipeService {
         if(recipeDto.getIngredients().isEmpty()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Recipe should have ingredients");
         }
-        if(recipeDto.getIngredients().size() == 1){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Recipe should have more than one ingredient");
-        }
 
         var ingredients = ingredientService.convertSimpleIngredients(recipeDto.getIngredients());
         recipeRepository.save(new RecipeEntity(recipeDto.getName(),
@@ -57,5 +54,22 @@ public class RecipeService {
 
     public List<RecipeEntity> getAll() {
         return recipeRepository.findAll();
+    }
+
+    public void delete(Long id) {
+        recipeRepository.deleteById(id);
+    }
+
+    public void update(RecipeDto recipeDto) {
+        if(recipeRepository.existsById(recipeDto.getId())){
+            var ingredients = ingredientService.convertSimpleIngredients(recipeDto.getIngredients());
+            recipeRepository.save(new RecipeEntity(recipeDto.getId(),
+                    recipeDto.getName(),
+                    ingredientSimpleService.saveAll(recipeDto.getIngredients()),
+                    ingredients.stream().mapToInt(ingredient -> ingredient.getCalories().intValue()).sum(),
+                    BigDecimal.valueOf(ingredients.stream().mapToDouble(ingredient -> ingredient.getProtein().doubleValue()).sum()).setScale(2, RoundingMode.FLOOR),
+                    BigDecimal.valueOf(ingredients.stream().mapToDouble(ingredient -> ingredient.getFat().doubleValue()).sum()).setScale(2, RoundingMode.FLOOR),
+                    BigDecimal.valueOf(ingredients.stream().mapToDouble(ingredient -> ingredient.getCarbohydrate().doubleValue()).sum()).setScale(2, RoundingMode.FLOOR)));
+        }
     }
 }

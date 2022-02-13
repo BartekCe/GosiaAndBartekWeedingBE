@@ -30,23 +30,23 @@ class RecipeServiceTest {
     private ObjectMapper objectMapper;
 
 
-    @Test
-    void asdasdasf() throws Exception {
-        var recipeDto = new RecipeDto("oat meal", List.of(
-                new IngredientSimpleDto("oat flakes", 70, 1),
-                new IngredientSimpleDto("soy milk(Natumi)", 180, 2)));
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/addRecipe")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(wrapIngredient(recipeDto))).andExpect((status().isOk()));
-
-        recipeService.getRecipe("oat meal");
-
-        mockMvc.perform(MockMvcRequestBuilders.get("/getRecipe/oat meal")
-        ).andExpect((status().isOk()));
-    }
-
-    private String wrapIngredient(RecipeDto recipeDto) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(recipeDto);
-    }
+//    @Test
+//    void asdasdasf() throws Exception {
+//        var recipeDto = new RecipeDto("oat meal", List.of(
+//                new IngredientSimpleDto("oat flakes", 70, 1),
+//                new IngredientSimpleDto("soy milk(Natumi)", 180, 2)));
+//
+//        mockMvc.perform(MockMvcRequestBuilders.post("/addRecipe")
+//                .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                .content(wrapIngredient(recipeDto))).andExpect((status().isOk()));
+//
+//        recipeService.getRecipe("oat meal");
+//
+//        mockMvc.perform(MockMvcRequestBuilders.get("/getRecipe/oat meal")
+//        ).andExpect((status().isOk()));
+//    }
+//
+//    private String wrapIngredient(RecipeDto recipeDto) throws JsonProcessingException {
+//        return objectMapper.writeValueAsString(recipeDto);
+//    }
 }

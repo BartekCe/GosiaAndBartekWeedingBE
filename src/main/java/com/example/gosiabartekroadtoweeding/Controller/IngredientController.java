@@ -9,6 +9,7 @@ import java.util.List;
 
 @CrossOrigin()
 @RestController
+@RequestMapping(path = "/ingredient")
 public class IngredientController {
     private final IngredientService ingredientService;
 
@@ -16,23 +17,38 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
-    @PostMapping(path = "/addIngredient")
+    @PostMapping(path = "/add")
     public IngredientEntity addIngredient(@RequestBody IngredientDto ingredientDto) {
         return ingredientService.save(ingredientDto);
     }
 
-    @GetMapping(path = "/getIngredient")
-    public IngredientEntity getIngredient(@RequestBody String name) {
+    @PostMapping(path = "/addMany")
+    public void addIngredients(@RequestBody List<IngredientEntity> ingredients) {
+        ingredientService.saveAll(ingredients);
+    }
+
+    @GetMapping(path = "/get/{name}")
+    public IngredientEntity getIngredient(@PathVariable String name) {
         return ingredientService.getIngredientData(name);
     }
 
-    @GetMapping(path = "/getIngredientsList")
+    @GetMapping(path = "/getAllNames")
     public List<String> getIngredientsNames() {
         return ingredientService.getIngredientsNames();
     }
 
-    @PutMapping(path = "/updateIngredient")
+    @GetMapping(path = "/getAll")
+    public List<IngredientEntity> getIngredients() {
+        return ingredientService.getIngredients();
+    }
+
+    @PutMapping(path = "/update")
     public void updateIngredient(@RequestBody IngredientDto ingredientDto){
         ingredientService.updateIngredient(ingredientDto);
+    }
+
+    @DeleteMapping(path = "/deleteIngredient/{id}")
+    public void deleteIngredient(@PathVariable Long id){
+        ingredientService.delete(id);
     }
 }

@@ -15,15 +15,6 @@ public class IngredientService {
 
     public IngredientService(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
-        var defaultIngredients = new DefaultIngredients();
-        ingredientRepository.saveAll(List.of(
-                new IngredientEntity("1 ingredient"),
-                new IngredientEntity("2 ingredient"),
-                new IngredientEntity("3 ingredient")
-        ));
-        if (this.getAll().size() == 3) {
-            ingredientRepository.saveAll(defaultIngredients.getDefaultIngredients());
-        }
     }
 
     public IngredientEntity save(IngredientDto ingredientDto) {
@@ -86,5 +77,17 @@ public class IngredientService {
                 ingredientDto.getCarbohydrate().divide(grams, 4, RoundingMode.CEILING),
                 1
         )));
+    }
+
+    public List<IngredientEntity> getIngredients() {
+        return ingredientRepository.findAll();
+    }
+
+    public void saveAll(List<IngredientEntity> ingredients) {
+        ingredientRepository.saveAll(ingredients);
+    }
+
+    public void delete(Long id) {
+        ingredientRepository.deleteById(id);
     }
 }

@@ -15,15 +15,15 @@ public class WeekEntityService {
         this.dayOfEatingService = dayOfEatingService;
     }
 
-    public WeekEntity addNewWeek(Long dayId, int weeklyCaloriesIntake) {
-        return weekEntityRepository.save(new WeekEntity(dayOfEatingService.saveAllWeek(dayId), weeklyCaloriesIntake));
+    public WeekEntity addNewWeek(Long dayId, int weeklyCaloriesIntake, double weightOnStartingWeek) {
+        return weekEntityRepository.save(new WeekEntity(dayOfEatingService.saveAllWeek(dayId), weeklyCaloriesIntake, weightOnStartingWeek));
     }
 
     public WeekData getWeekByDayId(Long dayId) {
         var week = weekEntityRepository.findAll().stream()
                 .filter(weekEntity -> weekEntity.getDays().stream().anyMatch(day -> day.getId().equals(dayId))).findAny();
         if (week.isPresent()) {
-            var weekData = new WeekData(week.get().getWeeklyCaloriesIntake());
+            var weekData = new WeekData(week.get().getWeeklyCaloriesIntake(), week.get().getWeightOnWeekStart());
             week.get().getDays().forEach(day -> day.getMeals()
                     .forEach(mealEntity -> weekData.setCurrentCalories(weekData.getCurrentCalories() + mealEntity.getCalories())));
             return weekData;

@@ -31,8 +31,8 @@ public class UserEntity {
     @OneToMany
     private List<WeekEntity> weeks;
 
-    public UserEntity(String name, double currentWeight, double goalWeight
-            ,int weeklyCaloriesIntake, int dailyCaloriesIntake, int dailyProtein, int dailyFat, int dailyCarbohydrate) {
+    public UserEntity(String name, double currentWeight, double goalWeight,
+                      int weeklyCaloriesIntake, int dailyCaloriesIntake, int dailyProtein, int dailyFat, int dailyCarbohydrate) {
         this.name = name;
         this.startingWeight = currentWeight;
         this.currentWeight = currentWeight;

@@ -19,9 +19,11 @@ public class WeekEntity {
     @OneToMany
     private List<DayOfEatingEntity> days;
     private int weeklyCaloriesIntake;
+    private double weightOnWeekStart;
 
-    public WeekEntity(List<DayOfEatingEntity> days,  int weeklyCaloriesIntake) {
+    public WeekEntity(List<DayOfEatingEntity> days,  int weeklyCaloriesIntake, double weightOnWeekStart) {
         this.days = days;
         this.weeklyCaloriesIntake = weeklyCaloriesIntake;
+        this.weightOnWeekStart = weightOnWeekStart;
     }
 }

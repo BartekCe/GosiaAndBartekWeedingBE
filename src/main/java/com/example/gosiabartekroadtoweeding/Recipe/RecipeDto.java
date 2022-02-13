@@ -9,6 +9,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 public class RecipeDto {
+    private final Long id;
     private final String name;
     private final List<IngredientSimpleDto> ingredients;
 
