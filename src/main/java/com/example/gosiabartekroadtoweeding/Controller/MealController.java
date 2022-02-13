@@ -7,17 +7,18 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin()
 @RestController
+@RequestMapping(path = "/meal")
 public class MealController {
     private final MealService mealService;
     public MealController(MealService mealService) {
         this.mealService = mealService;
     }
-    @GetMapping(path = "/getMeal")
-    public MealEntity getMeal(@RequestBody Long id){
+    @GetMapping(path = "/get/{id}")
+    public MealEntity getMeal(@PathVariable Long id){
         return mealService.getMeal(id);
     }
 
-    @PutMapping(path = "/updateMeal")
+    @PutMapping(path = "/update")
         public void updateMeal(@RequestBody MealDto mealDto){
             mealService.updateMeal(mealDto);
         }

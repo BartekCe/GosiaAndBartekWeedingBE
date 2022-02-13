@@ -10,11 +10,11 @@ class UserEntityServiceTest {
     @Autowired
     private UserEntityService userEntityService;
 
-    @Test
-    void asdsava() {
-        var bartek = userEntityService.getUser("Bartek");
-            var dayId = Long.parseLong(bartek.getId().toString() + "20220124");
-            userEntityService.getDay(dayId);
-        System.out.println("after -> " + bartek.getWeeks().size());
-    }
+//    @Test
+//    void asdsava() {
+//        var bartek = userEntityService.getUser("Bartek");
+//            var dayId = Long.parseLong(bartek.getId().toString() + "20220124");
+//            userEntityService.getDay(dayId);
+//        System.out.println("after -> " + bartek.getWeeks().size());
+//    }
 }

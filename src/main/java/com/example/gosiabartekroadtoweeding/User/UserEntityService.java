@@ -25,7 +25,7 @@ public class UserEntityService {
         this.userEntityRepository = userEntityRepository;
         this.dayOfEatingService = dayOfEatingService;
         this.weekEntityService = weekEntityService;
-        createDefault();
+//        createDefault();
     }
 
     public UserEntity getUser(String name) {
@@ -67,7 +67,7 @@ public class UserEntityService {
         return users;
     }
 
-    private void createDefault() {
+    public void createDefault() {
         if (userEntityRepository.getByName("Bartek").isEmpty()) {
             userEntityRepository.save(
                     new UserEntity(
@@ -86,7 +86,7 @@ public class UserEntityService {
             userEntityRepository.save(
                     new UserEntity(
                             "Gosia",
-                            71.0,
+                            72.0,
                             65.0,
                             12600,
                             1800,
@@ -109,7 +109,7 @@ public class UserEntityService {
             var dateFromId = dayOfEatingService.getDateFormId(dayId);
             var todayDay = LocalDate.now().getDayOfWeek();
             if (user.getWeeks().isEmpty()) {
-                x = List.of(weekEntityService.addNewWeek(dayId, user.getWeeklyCaloriesIntake()));
+                x = List.of(weekEntityService.addNewWeek(dayId, user.getWeeklyCaloriesIntake(), user.getCurrentWeight()));
             } else if (dateFromId.getDayOfWeek() == DayOfWeek.MONDAY && todayDay != DayOfWeek.SUNDAY) {
                 if (!dayOfEatingService.isDayBeforeExist(dayId)) {
                     throw new ResponseStatusException(HttpStatus.NOT_FOUND);
@@ -118,7 +118,7 @@ public class UserEntityService {
                 }
             } else {
                 x = user.getWeeks();
-                x.add(weekEntityService.addNewWeek(dayId, user.getWeeklyCaloriesIntake()));
+                x.add(weekEntityService.addNewWeek(dayId, user.getWeeklyCaloriesIntake(), user.getCurrentWeight()));
             }
 
             userEntityRepository.save(new UserEntity(
@@ -138,7 +138,7 @@ public class UserEntityService {
         var todayId = Long.parseLong(userId + LocalDate.now().toString().replace("-", ""));
         if (!dayOfEatingService.existById(todayId)) {
             var weeks = user.getWeeks();
-            weeks.add(weekEntityService.addNewWeek(todayId, user.getWeeklyCaloriesIntake()));
+            weeks.add(weekEntityService.addNewWeek(todayId, user.getWeeklyCaloriesIntake(), user.getCurrentWeight()));
             return true;
         } else return false;
 

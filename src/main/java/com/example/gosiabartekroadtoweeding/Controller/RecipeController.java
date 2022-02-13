@@ -9,6 +9,7 @@ import java.util.List;
 
 @CrossOrigin()
 @RestController
+@RequestMapping(path = "/recipe")
 public class RecipeController {
     private final RecipeService recipeService;
 
@@ -16,18 +17,28 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @PostMapping(path = "/addRecipe")
+    @PostMapping(path = "/add")
     public void saveRecipe(@RequestBody RecipeDto recipeDto) {
          recipeService.save(recipeDto);
     }
 
-    @GetMapping(path = "/getRecipe/{name}")
+    @GetMapping(path = "/get/{name}")
     public RecipeEntity getRecipe(@PathVariable String name) {
         return recipeService.getRecipe(name);
     }
 
-    @GetMapping(path = "/getRecipes")
+    @GetMapping(path = "/getAll")
     public List<RecipeEntity> getRecipes() {
         return recipeService.getAll();
+    }
+
+    @PutMapping(path="/update")
+    public void updateRecipe(@RequestBody RecipeDto recipeDto) {
+        recipeService.update(recipeDto);
+    }
+
+    @DeleteMapping(path ="/delete/{id}")
+    public void deleteRecipe(@PathVariable Long id) {
+        recipeService.delete(id);
     }
 }

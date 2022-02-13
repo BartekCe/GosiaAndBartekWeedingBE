@@ -12,6 +12,7 @@ import java.util.List;
 
 @CrossOrigin()
 @RestController
+@RequestMapping(path = "/user")
 public class UserController {
     private final UserEntityService userEntityService;
 
@@ -19,12 +20,12 @@ public class UserController {
         this.userEntityService = userEntityService;
     }
 
-    @GetMapping(path = "/getUsersNames")
+    @GetMapping(path = "/getAllNames")
     public List<String> getUsersNames(){
         return userEntityService.getUsersNames();
     }
 
-    @GetMapping(path = "/getUsers")
+    @GetMapping(path = "/getAll")
     public List<UserSimpleData> getUsers(){
         return userEntityService.getUsers();
     }
@@ -34,7 +35,7 @@ public class UserController {
         return userEntityService.getDay(dayId);
     }
 
-    @PutMapping(path="/updateUser")
+    @PutMapping(path="/update")
     public void updateUser(@RequestBody UserDto userDto){
         userEntityService.updateUser(userDto);
     }
@@ -47,5 +48,10 @@ public class UserController {
     @PostMapping(path = "/copyMeal")
     public MealEntity copyMeal(@RequestBody CopyMealDto copyMealDto){
         return userEntityService.copyMeal(copyMealDto);
+    }
+
+    @PostMapping(path = "/createDefault")
+    public void createDefault(){
+        userEntityService.createDefault();
     }
 }

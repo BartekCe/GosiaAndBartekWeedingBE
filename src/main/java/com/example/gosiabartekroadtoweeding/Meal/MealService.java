@@ -33,10 +33,10 @@ public class MealService {
 
     public List<MealEntity> createEmptyMeals() {
         return mealRepository.saveAll(List.of(
-                new MealEntity(ingredientSimpleService.saveAllWithEmpty(ingredientSimpleService.emptyIngredients()), MealTag.BREAKFAST),
-                new MealEntity(ingredientSimpleService.saveAllWithEmpty(ingredientSimpleService.emptyIngredients()), MealTag.LUNCH),
-                new MealEntity(ingredientSimpleService.saveAllWithEmpty(ingredientSimpleService.emptyIngredients()), MealTag.DINNER),
-                new MealEntity(ingredientSimpleService.saveAllWithEmpty(ingredientSimpleService.emptyIngredients()), MealTag.OTHER)
+                new MealEntity(MealTag.BREAKFAST),
+                new MealEntity(MealTag.LUNCH),
+                new MealEntity( MealTag.DINNER),
+                new MealEntity( MealTag.OTHER)
         ));
     }
 

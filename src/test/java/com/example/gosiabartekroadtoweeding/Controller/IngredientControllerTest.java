@@ -25,17 +25,6 @@ class IngredientControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Test
-    void thereAreDefaultIngredients() throws Exception {
-        var ingredients = performGetIngredientsNames().andReturn().getResponse().getContentAsString();
-        assertThat(ingredients).contains("apple", "yeast flakes");
-    }
-
-    @Test
-    void cannotAddIngredientWithNameThatExistInDB() throws Exception {
-        performAddIngredient(TestIngredientDtoBuilder.existingOne().build())
-                .andExpect(status().isBadRequest());
-    }
 
     @Test
     void addingIngredientSucceed() throws Exception {
@@ -53,13 +42,13 @@ class IngredientControllerTest {
     }
 
     private ResultActions performAddIngredient(IngredientDto ingredient) throws Exception{
-        return mockMvc.perform(MockMvcRequestBuilders.post("/addIngredient")
+        return mockMvc.perform(MockMvcRequestBuilders.post("/ingredient/add")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(wrapIngredient(ingredient)));
     }
 
     private ResultActions performGetIngredientsNames() throws Exception {
-        return mockMvc.perform(MockMvcRequestBuilders.get("/getIngredientsList")).andExpect(status().isOk());
+        return mockMvc.perform(MockMvcRequestBuilders.get("/ingredient/getAllNames")).andExpect(status().isOk());
     }
 
     private String wrapIngredient(IngredientDto ingredient) throws JsonProcessingException {

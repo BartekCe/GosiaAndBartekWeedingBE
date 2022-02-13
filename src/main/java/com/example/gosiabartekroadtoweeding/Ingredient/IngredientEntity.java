@@ -45,9 +45,9 @@ public class IngredientEntity {
 
     public IngredientEntity(String name, BigDecimal protein, BigDecimal fat, BigDecimal carbohydrate, int grams) {
         this.name = name;
-        this.protein = protein.divide(BigDecimal.valueOf(grams), 4, RoundingMode.UNNECESSARY);
-        this.fat = fat.divide(BigDecimal.valueOf(grams), 4, RoundingMode.UNNECESSARY);
-        this.carbohydrate = carbohydrate.divide(BigDecimal.valueOf(grams), 4, RoundingMode.UNNECESSARY);
+        this.protein = protein.divide(BigDecimal.valueOf(grams), 4, RoundingMode.CEILING);
+        this.fat = fat.divide(BigDecimal.valueOf(grams), 4, RoundingMode.CEILING);
+        this.carbohydrate = carbohydrate.divide(BigDecimal.valueOf(grams), 4, RoundingMode.CEILING);
         this.calories = (this.protein.multiply(BigDecimal.valueOf(4)))
                 .add(this.fat.multiply(BigDecimal.valueOf(8)))
                 .add(this.carbohydrate.multiply(BigDecimal.valueOf(4)));
@@ -68,9 +68,9 @@ public class IngredientEntity {
 
     public IngredientEntity(String name, double protein, double fat, double carbohydrate) {
         this.name = name;
-        this.protein = BigDecimal.valueOf(protein).divide(BigDecimal.valueOf(100), 4, RoundingMode.UNNECESSARY);
-        this.fat = BigDecimal.valueOf(fat).divide(BigDecimal.valueOf(100), 4, RoundingMode.UNNECESSARY);
-        this.carbohydrate = BigDecimal.valueOf(carbohydrate).divide(BigDecimal.valueOf(100), 4, RoundingMode.UNNECESSARY);
+        this.protein = BigDecimal.valueOf(protein).divide(BigDecimal.valueOf(100), 4, RoundingMode.CEILING);
+        this.fat = BigDecimal.valueOf(fat).divide(BigDecimal.valueOf(100), 4, RoundingMode.CEILING);
+        this.carbohydrate = BigDecimal.valueOf(carbohydrate).divide(BigDecimal.valueOf(100), 4, RoundingMode.CEILING);
         this.calories = (this.protein.multiply(BigDecimal.valueOf(4)))
                 .add(this.fat.multiply(BigDecimal.valueOf(8)))
                 .add(this.carbohydrate.multiply(BigDecimal.valueOf(4)));

@@ -46,4 +46,13 @@ public class MealEntity {
         this.mealTag = mealTag;
         this.ingredients = ingredients;
     }
+
+    public MealEntity(MealTag mealTag) {
+        this.calories = 0;
+        this.protein = BigDecimal.valueOf(0);
+        this.fat = BigDecimal.valueOf(0);
+        this.carbohydrate = BigDecimal.valueOf(0);
+        this.mealTag = mealTag;
+        this.ingredients = List.of();
+    }
 }

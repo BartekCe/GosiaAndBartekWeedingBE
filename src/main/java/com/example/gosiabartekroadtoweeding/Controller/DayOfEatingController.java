@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin()
 @RestController
+@RequestMapping(path = "/dayOfEating")
 public class DayOfEatingController {
     private final DayOfEatingService dayOfEatingService;
 
@@ -13,12 +14,12 @@ public class DayOfEatingController {
         this.dayOfEatingService = dayOfEatingService;
     }
 
-    @GetMapping(path = "/getDayOfEating/{id}")
+    @GetMapping(path = "/get/{id}")
     public DayOfEatingEntity getDay(@PathVariable Long id) {
         return dayOfEatingService.getDay(id);
     }
 
-    @GetMapping(path = "/isDayExist/{id}")
+    @GetMapping(path = "/checkIfExist/{id}")
     public boolean isDayExist(@PathVariable Long id){
         return dayOfEatingService.existById(id);
     }
