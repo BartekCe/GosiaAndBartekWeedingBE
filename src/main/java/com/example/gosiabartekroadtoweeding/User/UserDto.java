@@ -2,18 +2,20 @@ package com.example.gosiabartekroadtoweeding.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserDto {
-    private final String name;
-    private final double currentWeight;
-    private final double goalWeight;
-    private final int weeklyCaloriesIntake;
-    private final int dailyCaloriesIntake;
-    private final int dailyProtein;
-    private final int dailyFat;
-    private final int dailyCarbohydrate;
+    private String name;
+    private double currentWeight;
+    private double goalWeight;
+    private int weeklyCaloriesIntake;
+    private int dailyCaloriesIntake;
+    private int dailyProtein;
+    private int dailyFat;
+    private int dailyCarbohydrate;
 
     @Override
     public String toString() {

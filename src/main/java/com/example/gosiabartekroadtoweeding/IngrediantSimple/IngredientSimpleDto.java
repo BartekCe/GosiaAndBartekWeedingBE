@@ -1,10 +1,12 @@
 package com.example.gosiabartekroadtoweeding.IngrediantSimple;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class IngredientSimpleDto {
-    private final String name;
-    private final int grams;
-    private final int number;
+    private  String name;
+    private  int grams;
+    private  int number;
 }
