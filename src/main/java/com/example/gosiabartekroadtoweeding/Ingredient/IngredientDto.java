@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 @AllArgsConstructor
 @NoArgsConstructor
 public class IngredientDto {
+    private Long id;
     @NotNull
     private String name;
     @NotNull

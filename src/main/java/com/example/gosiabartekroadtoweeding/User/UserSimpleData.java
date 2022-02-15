@@ -2,20 +2,22 @@ package com.example.gosiabartekroadtoweeding.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 public class UserSimpleData {
-    private final Long id;
-    private final String name;
-    private final double startingWeight;
-    private final double currentWeight;
-    private final double goalWeight;
-    private final int weeklyCaloriesIntake;
-    private final int dailyCaloriesIntake;
-    private final int dailyProtein;
-    private final int dailyFat;
-    private final int dailyCarbohydrate;
+    private Long id;
+    private String name;
+    private double startingWeight;
+    private double currentWeight;
+    private double goalWeight;
+    private int weeklyCaloriesIntake;
+    private int dailyCaloriesIntake;
+    private int dailyProtein;
+    private int dailyFat;
+    private int dailyCarbohydrate;
 }
