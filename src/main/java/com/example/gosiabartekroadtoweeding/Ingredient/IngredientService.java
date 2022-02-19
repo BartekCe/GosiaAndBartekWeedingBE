@@ -68,9 +68,9 @@ public class IngredientService {
 
     public void updateIngredient(IngredientDto ingredientDto){
         var grams = BigDecimal.valueOf(ingredientDto.getGrams());
-        var ingredient = ingredientRepository.getByName(ingredientDto.getName());
+        var ingredient = ingredientRepository.findById(ingredientDto.getId());
         ingredient.ifPresent(ingredientEntity -> ingredientRepository.save(new IngredientEntity(
-                ingredientEntity.getId(),
+                ingredientDto.getId(),
                 ingredientDto.getName(),
                 ingredientDto.getProtein().divide(grams, 4, RoundingMode.CEILING),
                 ingredientDto.getFat().divide(grams, 4, RoundingMode.CEILING),

@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>gosia-bartek-RoadToWeeding</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1-PROD</version>
     <name>gosia-bartek-RoadToWeeding</name>
     <description>gosia-bartek-RoadToWeeding</description>
     <properties>

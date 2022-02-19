@@ -47,7 +47,7 @@ public class IngredientController {
         ingredientService.updateIngredient(ingredientDto);
     }
 
-    @DeleteMapping(path = "/deleteIngredient/{id}")
+    @DeleteMapping(path = "/delete/{id}")
     public void deleteIngredient(@PathVariable Long id){
         ingredientService.delete(id);
     }
